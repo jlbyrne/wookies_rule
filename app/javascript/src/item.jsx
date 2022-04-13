@@ -13,7 +13,7 @@ const Item = ({data}) => {
 
   const textOrLink = (key) => {
     // normally I would not be so trusting of data structures, but I'm trying not to
-    // go too far outside the time expectations you gave me
+    // go overboard on the front end
     if (Array.isArray(data[key])) {
       return (
         <div className='entry'>

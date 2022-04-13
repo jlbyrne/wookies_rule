@@ -6,7 +6,7 @@ import Home from './Home';
 const Layout = () => {
   return (
     <>
-      <h1>Placeholder Heading</h1>
+      <h1>Star Wars</h1>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/films" element={<Display endpoint='films' />}/>

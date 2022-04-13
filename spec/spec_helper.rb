@@ -91,4 +91,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  config.before(:suite) do
+    unless File.exist?(Rails.root.join('app', 'assets', 'builds', 'application.css'))
+      $stdout.puts "\n🐢  Precompiling assets.\n"
+      Rails.application.load_tasks
+      Rake::Task["javascript:build"].invoke
+      Rake::Task["css:build"].invoke
+    end
+  end
 end
