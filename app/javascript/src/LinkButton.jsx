@@ -2,19 +2,15 @@ import React, { useContext } from 'react';
 import { useData } from './context/DataContext';
 
 const Item = ({text, url}) => {
-  const {actions: {setData}} = useData();
+  const {actions: {fetchData}} = useData();
 
   const refreshData = () => {
-    fetch(url)
-      .then(response => response.json())
-      .then(body => {
-        console.log(body)
-        setData(body);
-      });
+    const path = new URL(url).pathname;
+    fetchData(path);
   };
 
   return (
-    <div>
+    <div className="link-button">
       <button onClick={refreshData}>{text}</button>
     </div>
   );

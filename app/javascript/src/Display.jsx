@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from './Item';
 import { useData } from './context/DataContext';
 
 const Display = ({endpoint}) => {
-  const [loading, setLoading] = useState(true);
-  const { data, actions: {setData} } = useData();
+  const { data, actions: {fetchData} } = useData();
+  const [displayData, setDisplayData] = useState();
   
   useEffect(() => {
-    fetch(`/api/${endpoint}`)
-      .then(response => response.json())
-      .then(body => {
-        setData(body.results);
-        setLoading(false);
-      });
+    fetchData(`/api/${endpoint}`)
   }, [])
 
+  useEffect(() => {
+    setDisplayData(data);
+  }, [data, setDisplayData])
 
-  if (loading) {
-    return (<div>Loading...</div>);
-  } else {
+
+  if (displayData && Object.keys(displayData).length > 0) {
     return (
-      <ul>
-        {data.map(item => <li key={item.url}><Item data={item} /></li>)}
-      </ul>
+      <div className='main'>
+        {displayData.map(item => <Item key={item.url} data={item} />)}
+      </div>
     );
+  } else {
+    return (<div>Loading...</div>);
   }
 };
 

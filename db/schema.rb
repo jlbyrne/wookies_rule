@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_13_071748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "swapi_id"
+    t.string "characters", default: [], array: true
+    t.string "planets", default: [], array: true
+    t.string "species", default: [], array: true
+    t.string "vehicles", default: [], array: true
+    t.string "starships", default: [], array: true
   end
 
   create_table "films_people", id: false, force: :cascade do |t|
@@ -70,6 +75,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "updated_at", null: false
     t.bigint "planet_id"
     t.integer "swapi_id"
+    t.string "films", default: [], array: true
+    t.string "hair_color"
+    t.string "species", default: [], array: true
+    t.string "vehicles", default: [], array: true
+    t.string "starships", default: [], array: true
     t.index ["planet_id"], name: "index_people_on_planet_id"
   end
 
@@ -104,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "swapi_id"
+    t.string "residents", default: [], array: true
+    t.string "films", default: [], array: true
   end
 
   create_table "species", force: :cascade do |t|
@@ -123,6 +135,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "swapi_id"
+    t.string "films", default: [], array: true
+    t.string "people", default: [], array: true
   end
 
   create_table "starships", force: :cascade do |t|
@@ -145,6 +159,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "swapi_id"
+    t.string "films", default: [], array: true
+    t.string "pilots", default: [], array: true
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -165,6 +181,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "swapi_id"
+    t.string "films", default: [], array: true
+    t.string "pilots", default: [], array: true
   end
 
   add_foreign_key "people", "planets"

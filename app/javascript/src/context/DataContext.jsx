@@ -7,11 +7,23 @@ export const useData = () => {
 };
 
 const DataProvider = ({ children }) => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
+
+  const fetchData = (url) => {
+    fetch(url)
+      .then(response => response.json())
+      .then(body => {
+        if (body.results &&Array.isArray(body.results)) {
+          setData(body.results);
+        } else {
+          setData([body]);
+        }
+      });
+  };
   
   const value = {
     data,
-    actions: { setData },
+    actions: { fetchData },
   };
   
   return (

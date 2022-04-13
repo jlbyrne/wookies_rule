@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <Link to="/films">Films</Link>
-      <Link to="/people">People</Link>
-      <Link to="/planets">Planets</Link>
-      <Link to="/species">Species</Link>
-      <Link to="/starships">Starships</Link>
-      <Link to="/vehicles">Vehicles</Link>
+      <Link className="nav-link" to="/films">Films</Link>
+      <Link className="nav-link" to="/people">People</Link>
+      <Link className="nav-link" to="/planets">Planets</Link>
+      <Link className="nav-link" to="/species">Species</Link>
+      <Link className="nav-link" to="/starships">Starships</Link>
+      <Link className="nav-link" to="/vehicles">Vehicles</Link>
     </>
   );
 };
