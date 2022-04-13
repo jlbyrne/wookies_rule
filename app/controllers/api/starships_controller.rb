@@ -1,4 +1,4 @@
-class StarshipsController < ApplicationController
+class Api::StarshipsController < ApplicationController
 
   # GET /starships or /starships.json
   def index

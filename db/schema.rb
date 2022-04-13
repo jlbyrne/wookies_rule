@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_13_004441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "swapi_id"
   end
 
   create_table "films_people", id: false, force: :cascade do |t|
@@ -68,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "planet_id"
+    t.integer "swapi_id"
     t.index ["planet_id"], name: "index_people_on_planet_id"
   end
 
@@ -101,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "swapi_id"
   end
 
   create_table "species", force: :cascade do |t|
@@ -119,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "swapi_id"
   end
 
   create_table "starships", force: :cascade do |t|
@@ -140,6 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "swapi_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -159,6 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_003214) do
     t.string "vehicle_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "swapi_id"
   end
 
   add_foreign_key "people", "planets"

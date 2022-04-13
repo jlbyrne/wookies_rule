@@ -1,4 +1,4 @@
-class VehiclesController < ApplicationController
+class Api::VehiclesController < ApplicationController
 
   # GET /vehicles or /vehicles.json
   def index

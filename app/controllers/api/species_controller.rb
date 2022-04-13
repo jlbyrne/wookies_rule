@@ -1,4 +1,4 @@
-class SpeciesController < ApplicationController
+class Api::SpeciesController < ApplicationController
 
   # GET /species or /species.json
   def index

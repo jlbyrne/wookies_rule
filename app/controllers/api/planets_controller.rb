@@ -1,4 +1,4 @@
-class PlanetsController < ApplicationController
+class Api::PlanetsController < ApplicationController
 
   # GET /planets or /planets.json
   def index

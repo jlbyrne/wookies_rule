@@ -162,6 +162,7 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.1)
+    swgem (1.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -192,6 +193,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.3)
   sprockets-rails
   stimulus-rails
+  swgem (~> 1.0)
   turbo-rails
   tzinfo-data
   web-console
