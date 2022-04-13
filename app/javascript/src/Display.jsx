@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Item from './Item';
+import { useData } from './context/DataContext';
 
 const Display = () => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const { data, actions: {setData} } = useData();
   
   useEffect(() => {
+
     fetch('https://swapi.dev/api/')
       .then(response => response.json())
-      .then(data => {
-        setData(data);
+      .then(body => {
+        setData(body);
         setLoading(false);
       });
   }, [])
