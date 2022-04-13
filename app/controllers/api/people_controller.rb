@@ -7,16 +7,20 @@ class Api::PeopleController < Api::ApiController
     if @people.empty?
       @people = fetch_all('people')
       save_all_to_database(@people, Person)
+    else
+      @people = { results: @people}
     end
+
     render :json => @people
   end
 
   # GET /people/1 or /people/1.json
   def show
-    @people = Person.find_by_swapi_id(params[:id])
+    @people = Person.find_by_url(BASE_ENDPOINT + 'people/' + params[:id] + '/')
     
     unless @people
       @people = fetch_by_id('people', params[:id])
+      People.find_or_create_by(JSON.parse(@people))
     end
     render :json => @people
   end
