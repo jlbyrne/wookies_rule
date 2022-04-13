@@ -16,7 +16,11 @@ class Api::VehiclesController < Api::ApiController
     
     unless @vehicle
       @vehicle = fetch_by_id('vehicles', params[:id])
-      Vehicle.find_or_create_by(JSON.parse(@vehicle))
+      
+      begin
+        Vehicle.find_or_create_by(JSON.parse(@vehicle))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
 
     render :json => @vehicle

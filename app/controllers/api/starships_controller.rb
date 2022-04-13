@@ -17,7 +17,11 @@ class Api::StarshipsController < Api::ApiController
     
     unless @starship
       @starship = fetch_by_id('starships', params[:id])
-      Starship.find_or_create_by(JSON.parse(@starship))
+      
+      begin
+        Starship.find_or_create_by(JSON.parse(@starship))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
 
     render :json => @starship

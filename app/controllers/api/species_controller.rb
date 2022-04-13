@@ -16,7 +16,11 @@ class Api::SpeciesController < Api::ApiController
     
     unless @species
       @species = fetch_by_id('species', params[:id])
-      Species.find_or_create_by(JSON.parse(@species))
+
+      begin
+        Species.find_or_create_by(JSON.parse(@species))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
 
     render :json => @species

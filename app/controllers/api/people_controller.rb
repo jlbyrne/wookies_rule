@@ -20,7 +20,10 @@ class Api::PeopleController < Api::ApiController
     
     unless @people
       @people = fetch_by_id('people', params[:id])
-      People.find_or_create_by(JSON.parse(@people))
+      begin
+        People.find_or_create_by(JSON.parse(@people))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
     render :json => @people
   end

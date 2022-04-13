@@ -17,7 +17,11 @@ class Api::PlanetsController < Api::ApiController
     
     unless @planet
       @planet = fetch_by_id('planets', params[:id])
-      Planet.find_or_create_by(JSON.parse(@planet))
+      
+      begin
+        Planet.find_or_create_by(JSON.parse(@planet))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
 
     render :json => @planet

@@ -17,7 +17,10 @@ class Api::FilmsController < Api::ApiController
     
     unless @film
       @film = fetch_by_id('films', params[:id])
-      Film.find_or_create_by(JSON.parse(@film))
+      begin
+        Film.find_or_create_by(JSON.parse(@film))
+      rescue ActiveRecord::StatementInvalid
+      end
     end
 
     render :json => @film

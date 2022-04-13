@@ -17,10 +17,15 @@ class Api::ApiController < ApplicationController
   # because the dataset is small.  I think this is the fastest way to meet the criteria
   # in the assignment, though.  
   def save_all_to_database data, model
-    JSON.parse(data)['results'].each do |result|
-      # find or create by is slow, and definitely slower than Film.import(array_of_new_films)
-      # But I would be concerned about duplicates in a bulk upload like that.
-      model.find_or_create_by(result)
+    begin
+      JSON.parse(data)['results'].each do |result|
+        # find or create by is slow, and definitely slower than Film.import(array_of_new_films)
+        # But I would be concerned about duplicates in a bulk upload like that.
+        model.find_or_create_by(result)
+      end
+    rescue ActiveRecord::StatementInvalid
+      # some fields were not present in the schema
+      # normally this area would send the error to a logging system or maybe re-run the job with a correction
     end
   end
 
